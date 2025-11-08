@@ -24,28 +24,59 @@ messages = [{"role": "system", "content": system_prompt}]
 print("🧠 Argus Debate Bot — type 'exit' or 'quit' to stop debating.\n")
 
 # Conversation loop
-while True:
-    user_input = input("You: ")
+topic = input("I want to learn about: ")
+if topic.lower() in ["exit", "quit"]:
+    print("🫡 Debate concluded. Well fought!")
 
-    if user_input.lower() in ["exit", "quit"]:
-        print("🫡 Debate concluded. Well fought!")
-        break
 
-    # Add user message
-    messages.append({"role": "user", "content": user_input})
+side = input("Do you want pro or con first? ").lower()
 
-    try:
-        # Generate AI response
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile", messages=messages
-        )
+if side.lower() in ["exit", "quit"]:
+    print("🫡 Debate concluded. Well fought!")
+    exit()
 
-        # Extract reply text
-        reply = response.choices[0].message.content
-        print(f"Argus: {reply}\n")
+# Add user message
+messages.append({"role": "user", "content": f"debate {side} on: {topic}"})
 
-        # Add assistant message to history
-        messages.append({"role": "assistant", "content": reply})
+try:
+    # Generate AI response
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile", messages=messages
+    )
 
-    except Exception as e:
-        print(f"⚠️ Error: {e}\n")
+    # Extract reply text
+    reply = response.choices[0].message.content
+    print(f"Argus: {reply}\n")
+
+    # Add assistant message to history
+    messages.append({"role": "assistant", "content": reply})
+
+except Exception as e:
+    print(f"⚠️ Error: {e}\n")
+
+side = "con" if side == "pro" else "pro"
+messages.append({"role": "user", "content": f"debate {side} on: {topic}"})
+
+print(f"Now for the {side} on {topic}: ")
+
+try:
+    # Generate AI response
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile", messages=messages
+    )
+
+    # Extract reply text
+    reply = response.choices[2].message.content
+    print(f"Argus: {reply}\n")
+
+    # Add assistant message to history
+    messages.append({"role": "assistant", "content": reply})
+
+except Exception as e:
+    print(f"⚠️ Error: {e}\n")
+
+
+
+
+
+    
