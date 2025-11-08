@@ -1,0 +1,94 @@
+.debate-stage {
+  text-align: center;
+  padding: 2rem;
+  font-family: "Stack Sans", sans-serif;
+  color: #222;
+}
+
+.setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+input {
+  padding: 0.7rem;
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.debate-area {
+  margin-top: 2rem;
+}
+
+.chat {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  max-width: 70%;
+}
+
+.message.AI1 {
+  align-self: flex-start;
+}
+
+.message.AI2 {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.bubble {
+  background-color: #f1f1f1;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  text-align: left;
+  animation: fadeIn 0.4s ease;
+}
+
+.AI1 .bubble {
+  background-color: #e0f7fa;
+}
+
+.AI2 .bubble {
+  background-color: #fce4ec;
+}
+
+.avatar {
+  font-size: 1.8rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
