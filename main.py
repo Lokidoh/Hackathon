@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from groq import Groq
-api_key = 0
 
 # Initialize client
 
@@ -20,9 +19,7 @@ Keep responses concise but thought-provoking.
 """
 
 # Initialize the conversation
-messages = [
-    {"role": "system", "content": system_prompt}
-]
+messages = [{"role": "system", "content": system_prompt}]
 
 print("🧠 Argus Debate Bot — type 'exit' or 'quit' to stop debating.\n")
 
@@ -40,8 +37,7 @@ while True:
     try:
         # Generate AI response
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=messages
+            model="llama-3.3-70b-versatile", messages=messages
         )
 
         # Extract reply text
